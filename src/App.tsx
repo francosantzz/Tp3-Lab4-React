@@ -48,5 +48,5 @@ const App: React.FC = () => {
   );
   
 };
-
+//TODO: Dividir el programa en mas componentes
 export default App;
