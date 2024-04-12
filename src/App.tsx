@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
+import InstrumentoItem from './InstrumentoItem';
+import { Instrumento } from './entities/instrumento';
 
 const App: React.FC = () => {
-  const [instrumentos, setInstrumentos] = useState<any[]>([]);
+  const [instrumentos, setInstrumentos] = useState<Instrumento[]>([]);
 
   useEffect(() => {
     fetch('/instrumentos.json')
@@ -13,38 +15,23 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>Listado de Instrumentos</h1>
-      <ul>
-        {instrumentos.map((instrumento: any) => (
-          <li key={instrumento.id} className="card">
-            <div className="imagen">
-              <img src={`./img/${instrumento.imagen}`} alt={instrumento.instrumento} />
-            </div>
-            <div className='description'>
-              <div>
-                <p className="title">{instrumento.instrumento}</p>
-                  <div>
-                    <p className="price">Precio: ${instrumento.precio}</p>
-                  </div>
-                <p className="descripcion">{instrumento.descripcion}</p>
-              </div>
-              <div>
-                  <div className='camion'>
-                    <img src={`./img/camion.png`} alt="" />
-                    {instrumento.costoEnvio === 'G' ? (
-                      <p>Envío: Envío gratis a todo el país</p>
-                    ) : (
-                      <p>Envío: ${instrumento.costoEnvio}</p>
-                    )}
-                  </div>
-                  <p className='cant'>Cantidad Vendida: {instrumento.cantidadVendida}</p>
-              </div>
-            </div>
-            
-          </li>
-        ))}
-      </ul>
-    </div>
+    <h1 className='listado'>Listado de Instrumentos</h1>
+    <ul>
+      {instrumentos.map((instrumento: Instrumento) => (
+        <InstrumentoItem key={instrumento.id} 
+        instrumento={instrumento.instrumento}
+        cantidadVendida={instrumento.cantidadVendida}
+        costoEnvio={instrumento.costoEnvio}
+        descripcion={instrumento.descripcion}
+        id={instrumento.id}
+        imagen={instrumento.imagen}
+        marca={instrumento.marca}
+        modelo={instrumento.modelo}
+        precio={instrumento.precio}
+        />
+      ))}
+    </ul>
+  </div>
   );
   
 };

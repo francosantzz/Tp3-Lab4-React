@@ -27,7 +27,13 @@ ul {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 
 }
-
+.card .descripcion{
+  margin-top: 15px;
+}
+.listado{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px;
+}
 .card img {
   width: 200px;
   border-radius: 8px;
